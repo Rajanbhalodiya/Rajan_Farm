@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import headIcon from '../assets/head.ico';
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,11 +60,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? 'py-4 glass-nav shadow-luxury dark:shadow-luxury-dark'
-            : 'py-6 bg-transparent border-b border-transparent'
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled
+          ? 'py-4 glass-nav shadow-luxury dark:shadow-luxury-dark'
+          : 'py-6 bg-transparent border-b border-transparent'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
@@ -72,9 +72,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             className="flex items-center gap-2.5 text-left focus:outline-none group"
           >
             <div className="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-mango to-mango-dark rounded-xl shadow-glow-gold transition-all duration-300 group-hover:scale-105">
-              <svg viewBox="0 0 100 100" fill="#1B4332" className="w-6 h-6">
-                <path d="M50 15 C 20 15, 10 50, 30 75 C 45 90, 75 90, 85 70 C 95 50, 80 15, 50 15 Z" />
-              </svg>
+              <img src={headIcon} alt="logo" className="w-6 h-6 object-contain" />
             </div>
             <div>
               <span className="block text-lg font-serif font-black tracking-widest text-farm dark:text-mango uppercase leading-none">
@@ -92,11 +90,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative text-sm font-semibold tracking-wide transition-colors duration-300 ${
-                  activeSection === item.id
-                    ? 'text-farm dark:text-mango'
-                    : 'text-farm-dark/70 dark:text-white/70 hover:text-farm dark:hover:text-mango'
-                }`}
+                className={`relative text-sm font-semibold tracking-wide transition-colors duration-300 ${activeSection === item.id
+                  ? 'text-farm dark:text-mango'
+                  : 'text-farm-dark/70 dark:text-white/70 hover:text-farm dark:hover:text-mango'
+                  }`}
               >
                 {item.label}
                 {activeSection === item.id && (
@@ -156,11 +153,10 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-left px-4 py-2.5 rounded-2xl text-base font-semibold tracking-wide transition-all ${
-                    activeSection === item.id
-                      ? 'bg-farm/10 dark:bg-mango/15 text-farm dark:text-mango'
-                      : 'text-farm-dark/80 dark:text-white/80 hover:bg-farm/5 dark:hover:bg-white/5'
-                  }`}
+                  className={`text-left px-4 py-2.5 rounded-2xl text-base font-semibold tracking-wide transition-all ${activeSection === item.id
+                    ? 'bg-farm/10 dark:bg-mango/15 text-farm dark:text-mango'
+                    : 'text-farm-dark/80 dark:text-white/80 hover:bg-farm/5 dark:hover:bg-white/5'
+                    }`}
                 >
                   {item.label}
                 </button>

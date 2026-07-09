@@ -1,4 +1,5 @@
 import React from 'react';
+import headIcon from '../assets/head.ico';
 
 const Footer = () => {
   const scrollToSection = (id) => {
@@ -54,9 +55,7 @@ const Footer = () => {
               className="flex items-center gap-2.5 text-left focus:outline-none group"
             >
               <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-mango to-mango-dark rounded-xl shadow-glow-gold">
-                <svg viewBox="0 0 100 100" fill="#1B4332" className="w-6 h-6">
-                  <path d="M50 15 C 20 15, 10 50, 30 75 C 45 90, 75 90, 85 70 C 95 50, 80 15, 50 15 Z" />
-                </svg>
+                <img src={headIcon} alt="logo" className="w-6 h-6 object-contain" />
               </div>
               <div>
                 <span className="block text-lg font-serif font-black tracking-widest text-mango uppercase leading-none">
