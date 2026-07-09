@@ -69,7 +69,7 @@ const Footer = () => {
             </button>
 
             <p className="max-w-md text-sm font-sans text-white/60 leading-relaxed">
-              Cultivating the finest authentic Gir Kesar Mangoes since 2016 in the fertile lands of Talala Gir.
+              Cultivating the finest authentic Gir Kesar Mangoes since 2023 in the fertile lands of Talala Gir.
               Grown naturally with organic care, handpicked with affection, and shipped fresh directly to
               your family.
             </p>

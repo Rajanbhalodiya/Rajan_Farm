@@ -37,7 +37,7 @@ const Counter = ({ target, suffix = '', duration = 1.5 }) => {
 
 const Stats = () => {
   const statList = [
-    { target: 10, suffix: '+', label: 'Years Experience' },
+    { target: 3, suffix: '+', label: 'Years Experience' },
     { target: 500, suffix: '+', label: 'Happy Customers' },
     { target: 100, suffix: '%', label: 'Natural Farming' },
     { target: 1000, suffix: '+', label: 'Boxes Delivered' },
