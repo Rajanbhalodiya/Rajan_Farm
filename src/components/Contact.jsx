@@ -111,7 +111,12 @@ const Contact = () => {
               </a>
 
               {/* Address item */}
-              <div className="flex items-center gap-5 p-4 rounded-2xl glass-card border border-farm-dark/5 dark:border-white/5 transition-all duration-300 group">
+              <a
+                href="https://share.google/hUw6H3iXRVgYpFuOV"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-5 p-4 rounded-2xl glass-card hover:bg-farm/5 dark:hover:bg-white/5 border border-farm-dark/5 dark:border-white/5 transition-all duration-300 group"
+              >
                 <div className="w-12 h-12 rounded-xl bg-farm/10 dark:bg-white/5 flex items-center justify-center text-farm dark:text-mango group-hover:scale-110 transition-transform duration-300">
                   <MapPin size={18} />
                 </div>
@@ -122,8 +127,11 @@ const Contact = () => {
                   <p className="text-sm font-sans font-semibold text-farm-dark/90 dark:text-white/80 mt-0.5 leading-snug">
                     {farmAddress}
                   </p>
+                  <span className="text-[11px] font-sans font-bold text-farm dark:text-mango group-hover:underline mt-1.5 inline-flex items-center gap-1 transition-all duration-300">
+                    {t('viewOnGoogleMaps')} &rarr;
+                  </span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 

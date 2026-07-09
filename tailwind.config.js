@@ -27,7 +27,7 @@ export default {
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Outfit"', '"Inter"', 'sans-serif'],
+        sans: ['"DM Sans"', '"Inter"', 'sans-serif'],
       },
       animation: {
         'float-slow': 'float 8s ease-in-out infinite',

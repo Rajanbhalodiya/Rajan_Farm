@@ -68,20 +68,20 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           : 'py-6 bg-transparent border-b border-transparent'
           }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => scrollToSection('home')}
-            className="flex items-center gap-2.5 text-left focus:outline-none group"
+            className="flex items-center gap-2 sm:gap-2.5 text-left focus:outline-none group"
           >
-            <div className="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-mango to-mango-dark rounded-xl shadow-glow-gold transition-all duration-300 group-hover:scale-105">
-              <img src={headIcon} alt="logo" className="w-6 h-6 object-contain" />
+            <div className="relative w-9 h-9 sm:w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-mango to-mango-dark rounded-xl shadow-glow-gold transition-all duration-300 group-hover:scale-105">
+              <img src={headIcon} alt="logo" className="w-5 h-5 sm:w-6 h-6 object-contain" />
             </div>
             <div>
-              <span className="block text-lg font-serif font-black tracking-widest text-farm dark:text-mango uppercase leading-none">
+              <span className="block text-base sm:text-lg font-serif font-black tracking-widest text-farm dark:text-mango uppercase leading-none">
                 Rajan Farm
               </span>
-              <span className="block text-[9px] font-sans tracking-widest text-farm-dark/60 dark:text-white/40 uppercase font-semibold mt-0.5">
+              <span className="block text-[8px] sm:text-[9px] font-sans tracking-widest text-farm-dark/60 dark:text-white/40 uppercase font-semibold mt-0.5">
                 Talala Gir • Gujarat
               </span>
             </div>

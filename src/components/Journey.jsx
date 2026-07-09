@@ -105,7 +105,7 @@ const Journey = () => {
                   </div>
 
                   {/* Center Dot with Icon */}
-                  <div className="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
+                  <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center z-10">
                     <motion.div
                       initial={{ scale: 0.5, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
