@@ -1,43 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Leaf, Droplets, Flower, Sun, Scissors, Package, Send } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Journey = () => {
+  const { t } = useLanguage();
+
   const steps = [
     {
       icon: <Leaf className="w-5 h-5" />,
-      title: 'Plantation',
-      desc: 'Selected premium saplings are planted in deep fertile soil of Talala Gir, rich in minerals.',
+      titleKey: 'step1Title',
+      descKey: 'step1Desc',
     },
     {
       icon: <Droplets className="w-5 h-5" />,
-      title: 'Organic Care',
-      desc: 'Nurtured with natural cow-manure, organic compost, and herbal spray mixtures.',
+      titleKey: 'step2Title',
+      descKey: 'step2Desc',
     },
     {
       icon: <Flower className="w-5 h-5" />,
-      title: 'Flowering',
-      desc: 'Orchards are covered in beautiful yellow-golden blooms during the winter breeze of December.',
+      titleKey: 'step3Title',
+      descKey: 'step3Desc',
     },
     {
       icon: <Sun className="w-5 h-5" />,
-      title: 'Fruit Growth',
-      desc: 'Fruits absorb abundant sunshine to develop their rich sweetness and signature shape.',
+      titleKey: 'step4Title',
+      descKey: 'step4Desc',
     },
     {
       icon: <Scissors className="w-5 h-5" />,
-      title: 'Harvesting',
-      desc: 'Handpicked carefully at full maturity using specialized padded nets to prevent bruising.',
+      titleKey: 'step5Title',
+      descKey: 'step5Desc',
     },
     {
       icon: <Package className="w-5 h-5" />,
-      title: 'Grading & Packaging',
-      desc: 'Sorted strictly by size, color, and aroma. Packed safely in well-ventilated boxes.',
+      titleKey: 'step6Title',
+      descKey: 'step6Desc',
     },
     {
       icon: <Send className="w-5 h-5" />,
-      title: 'Doorstep Delivery',
-      desc: 'Express dispatch direct from the farm, ensuring you taste the natural juices.',
+      titleKey: 'step7Title',
+      descKey: 'step7Desc',
     },
   ];
 
@@ -53,10 +56,10 @@ const Journey = () => {
         {/* Section Header */}
         <div className="text-center space-y-4 mb-24">
           <span className="text-xs font-sans tracking-[0.2em] font-extrabold text-farm dark:text-mango uppercase block">
-            HOW WE DO IT
+            {t('journeySubtitle')}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-farm-dark dark:text-white">
-            The Farm Journey
+            {t('journeyTitle')}
           </h2>
           <div className="w-12 h-1 bg-mango mx-auto rounded-full" />
         </div>
@@ -93,10 +96,10 @@ const Journey = () => {
                       </span>
 
                       <h3 className="text-xl font-serif font-bold text-farm dark:text-mango mb-3">
-                        {step.title}
+                        {t(step.titleKey)}
                       </h3>
                       <p className="text-sm sm:text-base text-farm-dark/70 dark:text-white/60 font-sans leading-relaxed">
-                        {step.desc}
+                        {t(step.descKey)}
                       </p>
                     </motion.div>
                   </div>

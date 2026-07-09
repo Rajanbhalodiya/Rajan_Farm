@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MessageSquare, MapPin, Send } from 'lucide-react';
+import { Phone, MessageSquare, MapPin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -11,7 +13,7 @@ const Contact = () => {
   });
 
   const farmPhone = '+91 95104 59100'; // Farm contact phone
-  const farmAddress = 'Rajan Farm, Talala-Veraval Highway, Talala, Gir, Gujarat - 362150';
+  const farmAddress = t('contactAddressValue');
 
   const handleChange = (e) => {
     setFormData({
@@ -26,16 +28,16 @@ const Contact = () => {
     const { name, phone, city, qty } = formData;
 
     if (!name || !phone || !city || !qty) {
-      alert('Please fill out all fields before ordering.');
+      alert(t('formValidationAlert'));
       return;
     }
 
-    // Construct the WhatsApp message
-    const message = `Hello Rajan Farm! I would like to place an order:
-• Name: ${name}
-• Phone: ${phone}
-• City: ${city}
-• Quantity/Selection: ${qty}`;
+    // Construct the WhatsApp message using translations
+    const message = `${t('waHeader')}
+• ${t('waName')}: ${name}
+• ${t('waPhone')}: ${phone}
+• ${t('waCity')}: ${city}
+• ${t('waQty')}: ${qty}`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${farmPhone.replace(/\D/g, '')}?text=${encodedMessage}`;
@@ -57,17 +59,16 @@ const Contact = () => {
           <div className="lg:col-span-5 space-y-10">
             <div className="space-y-4">
               <span className="text-xs font-sans tracking-[0.2em] font-extrabold text-farm dark:text-mango uppercase block">
-                GET IN TOUCH
+                {t('contactSubtitle')}
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-farm-dark dark:text-white leading-tight">
-                Get Fresh Mangoes <br /> Delivered
+                {t('contactHeading')}
               </h2>
               <div className="w-12 h-1 bg-mango rounded-full" />
             </div>
 
             <p className="text-farm-dark/70 dark:text-white/60 font-sans text-base sm:text-lg leading-relaxed">
-              Order authentic Gir Kesar mangoes direct from our orchards. Simply fill out the order form, and
-              it will open WhatsApp to confirm details, payment, and delivery logistics with us directly.
+              {t('contactDesc')}
             </p>
 
             <div className="space-y-6">
@@ -81,7 +82,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-[10px] font-sans tracking-wider text-farm-dark/50 dark:text-white/40 uppercase font-bold">
-                    Call Direct
+                    {t('contactCall')}
                   </p>
                   <p className="text-base sm:text-lg font-serif font-bold text-farm-dark dark:text-white mt-0.5">
                     {farmPhone}
@@ -101,7 +102,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-[10px] font-sans tracking-wider text-farm-dark/50 dark:text-white/40 uppercase font-bold">
-                    WhatsApp Chat
+                    {t('contactWhatsApp')}
                   </p>
                   <p className="text-base sm:text-lg font-serif font-bold text-farm-dark dark:text-white mt-0.5">
                     {farmPhone}
@@ -116,7 +117,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-[10px] font-sans tracking-wider text-farm-dark/50 dark:text-white/40 uppercase font-bold">
-                    Farm Address
+                    {t('contactAddress')}
                   </p>
                   <p className="text-sm font-sans font-semibold text-farm-dark/90 dark:text-white/80 mt-0.5 leading-snug">
                     {farmAddress}
@@ -137,7 +138,7 @@ const Contact = () => {
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-farm-dark dark:text-white mb-8 border-b border-farm-dark/5 dark:border-white/5 pb-4">
-                  Place Order Inquiry
+                  {t('formTitle')}
                 </h3>
 
                 {/* Name */}
@@ -146,7 +147,7 @@ const Contact = () => {
                     htmlFor="form-name"
                     className="text-xs font-sans tracking-wider uppercase font-bold text-farm-dark/60 dark:text-white/50"
                   >
-                    Your Name
+                    {t('formName')}
                   </label>
                   <input
                     type="text"
@@ -154,7 +155,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Enter your full name"
+                    placeholder={t('placeholderName')}
                     className="glass-input"
                     required
                   />
@@ -166,7 +167,7 @@ const Contact = () => {
                     htmlFor="form-phone"
                     className="text-xs font-sans tracking-wider uppercase font-bold text-farm-dark/60 dark:text-white/50"
                   >
-                    Phone Number
+                    {t('formPhone')}
                   </label>
                   <input
                     type="tel"
@@ -174,7 +175,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Enter your contact number"
+                    placeholder={t('placeholderPhone')}
                     className="glass-input"
                     required
                   />
@@ -186,7 +187,7 @@ const Contact = () => {
                     htmlFor="form-city"
                     className="text-xs font-sans tracking-wider uppercase font-bold text-farm-dark/60 dark:text-white/50"
                   >
-                    Shipping City / State
+                    {t('formCity')}
                   </label>
                   <input
                     type="text"
@@ -194,7 +195,7 @@ const Contact = () => {
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
-                    placeholder="Enter delivery city (e.g. Ahmedabad, Mumbai)"
+                    placeholder={t('placeholderCity')}
                     className="glass-input"
                     required
                   />
@@ -206,7 +207,7 @@ const Contact = () => {
                     htmlFor="form-qty"
                     className="text-xs font-sans tracking-wider uppercase font-bold text-farm-dark/60 dark:text-white/50"
                   >
-                    Box Selection & Quantity
+                    {t('formQty')}
                   </label>
                   <input
                     type="text"
@@ -214,7 +215,7 @@ const Contact = () => {
                     name="qty"
                     value={formData.qty}
                     onChange={handleChange}
-                    placeholder="e.g. 2 x Imperial Kesar Box (5 kg)"
+                    placeholder={t('placeholderQty')}
                     className="glass-input"
                     required
                   />
@@ -225,7 +226,7 @@ const Contact = () => {
                   type="submit"
                   className="btn-primary w-full py-4 text-sm tracking-wider uppercase flex items-center justify-center gap-2 shine-hover"
                 >
-                  <MessageSquare size={16} /> Order on WhatsApp
+                  <MessageSquare size={16} /> {t('formSubmit')}
                 </button>
               </form>
             </motion.div>

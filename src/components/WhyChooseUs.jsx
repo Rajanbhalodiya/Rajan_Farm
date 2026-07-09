@@ -1,38 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sprout, Award, Truck, Shield, Flame, Heart } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const WhyChooseUs = () => {
+  const { t } = useLanguage();
+
   const points = [
     {
       icon: <Sprout className="w-8 h-8 text-farm dark:text-mango" />,
-      title: 'Natural Farming',
-      desc: 'Cultivated with pure traditional methods. Zero chemical ripening agents or harmful pesticides.',
+      titleKey: 'whyFeat1Title',
+      descKey: 'whyFeat1Desc',
     },
     {
       icon: <Award className="w-8 h-8 text-farm dark:text-mango" />,
-      title: 'Premium Gir Kesar',
-      desc: 'Sourced from Talala Gir, the geographical indicator (GI) origin famous for genuine saffron kesar.',
+      titleKey: 'whyFeat2Title',
+      descKey: 'whyFeat2Desc',
     },
     {
       icon: <Truck className="w-8 h-8 text-farm dark:text-mango" />,
-      title: 'Direct Delivery',
-      desc: 'Direct transit from trees to your kitchen, cutting out middle agents and storage delays.',
+      titleKey: 'whyFeat3Title',
+      descKey: 'whyFeat3Desc',
     },
     {
       icon: <Shield className="w-8 h-8 text-farm dark:text-mango" />,
-      title: 'Best Quality',
-      desc: 'Meticulous manual sorting ensures only perfect shape, size, skin, and fragrance make the cut.',
+      titleKey: 'whyFeat4Title',
+      descKey: 'whyFeat4Desc',
     },
     {
       icon: <Flame className="w-8 h-8 text-farm dark:text-mango" />,
-      title: 'Fresh Harvest',
-      desc: 'Plucked only at the perfect ripeness window, maintaining maximum flavor longevity.',
+      titleKey: 'whyFeat5Title',
+      descKey: 'whyFeat5Desc',
     },
     {
       icon: <Heart className="w-8 h-8 text-farm dark:text-mango" />,
-      title: 'Pure Satisfaction',
-      desc: 'We guarantee the richest taste, juiciest pulp, and unforgettable Kesar aroma in every box.',
+      titleKey: 'whyFeat6Title',
+      descKey: 'whyFeat6Desc',
     },
   ];
 
@@ -72,10 +75,10 @@ const WhyChooseUs = () => {
         {/* Section Header */}
         <div className="text-center space-y-4 mb-20">
           <span className="text-xs font-sans tracking-[0.2em] font-extrabold text-farm dark:text-mango uppercase block">
-            OUR PROMISE
+            {t('whyTitle')}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-farm-dark dark:text-white">
-            Why Choose Rajan Farm
+            {t('whyHeading')}
           </h2>
           <div className="w-12 h-1 bg-mango mx-auto rounded-full" />
         </div>
@@ -102,10 +105,10 @@ const WhyChooseUs = () => {
               {/* Title & Desc */}
               <div className="space-y-3">
                 <h3 className="text-xl font-serif font-bold text-farm-dark dark:text-white group-hover:text-mango transition-colors duration-300">
-                  {point.title}
+                  {t(point.titleKey)}
                 </h3>
                 <p className="text-sm sm:text-base font-sans text-farm-dark/70 dark:text-white/60 leading-relaxed">
-                  {point.desc}
+                  {t(point.descKey)}
                 </p>
               </div>
             </motion.div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -32,7 +33,8 @@ function App() {
   }, [isDarkMode]);
 
   return (
-    <div className="min-h-screen bg-bgWarm-light dark:bg-bgWarm-dark transition-colors duration-500 overflow-x-hidden selection:bg-mango selection:text-farm-deep">
+    <LanguageProvider>
+      <div className="min-h-screen bg-bgWarm-light dark:bg-bgWarm-dark transition-colors duration-500 overflow-x-hidden selection:bg-mango selection:text-farm-deep">
       {/* Navigation */}
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
@@ -50,7 +52,8 @@ function App() {
 
       {/* Footer */}
       <Footer />
-    </div>
+      </div>
+    </LanguageProvider>
   );
 }
 

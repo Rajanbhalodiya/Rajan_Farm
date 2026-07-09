@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
   return (
@@ -44,24 +45,25 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
 };
 
 const FAQ = () => {
+  const { t } = useLanguage();
   const [openIdx, setOpenIdx] = useState(null);
 
   const faqs = [
     {
-      question: 'How are the mangoes ripened?',
-      answer: 'We ripen our Gir Kesar mangoes naturally using traditional grass-hay beds in well-ventilated chambers. We strictly avoid calcium carbide, ethylene gas, or any chemical ripening agents to ensure authentic taste, health safety, and pure natural aroma.',
+      qKey: 'faqQ1',
+      aKey: 'faqA1',
     },
     {
-      question: 'Do you deliver across Gujarat?',
-      answer: 'Yes! We deliver exclusively across all major cities and towns in Gujarat (including Ahmedabad, Surat, Vadodara, Rajkot, Jamnagar, and Bhavnagar). To ensure the absolute freshness of our handpicked Kesar mangoes, we do not offer delivery outside of Gujarat at this time.',
+      qKey: 'faqQ2',
+      aKey: 'faqA2',
     },
     {
-      question: 'What is the minimum order quantity?',
-      answer: 'Our minimum order quantity is 10 kg (Orchard Feast Box). To maintain harvest freshness and packaging standards directly from our Talala Gir orchards, we only dispatch orders of 10 kg or more.',
+      qKey: 'faqQ3',
+      aKey: 'faqA3',
     },
     {
-      question: 'Are the mangoes naturally grown?',
-      answer: 'Yes, absolutely. Our orchards in Talala Gir follow sustainable natural farming. We use organic cow manure, vermicompost, and home-brewed organic plant protectants, honoring nature to bring you premium, residue-free fruit.',
+      qKey: 'faqQ4',
+      aKey: 'faqA4',
     },
   ];
 
@@ -81,10 +83,10 @@ const FAQ = () => {
         {/* Section Header */}
         <div className="text-center space-y-4 mb-20">
           <span className="text-xs font-sans tracking-[0.2em] font-extrabold text-farm dark:text-mango uppercase block">
-            QUESTIONS
+            {t('faqSubtitle')}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-farm-dark dark:text-white">
-            Frequently Asked Questions
+            {t('faqTitle')}
           </h2>
           <div className="w-12 h-1 bg-mango mx-auto rounded-full" />
         </div>
@@ -94,8 +96,8 @@ const FAQ = () => {
           {faqs.map((faq, idx) => (
             <FAQItem
               key={idx}
-              question={faq.question}
-              answer={faq.answer}
+              question={t(faq.qKey)}
+              answer={t(faq.aKey)}
               isOpen={openIdx === idx}
               toggleOpen={() => handleToggle(idx)}
             />

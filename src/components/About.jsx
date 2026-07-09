@@ -1,29 +1,32 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Sprout, Truck, Sparkles, Home } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import farmView from '../assets/farm_view_1.jpg';
 
 const About = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: <Sprout className="w-6 h-6 text-farm dark:text-mango" />,
-      title: 'Natural Farming',
-      description: 'Cultivated using traditional organic nutrients. No artificial carbide ripening.',
+      titleKey: 'feat1Title',
+      descKey: 'feat1Desc',
     },
     {
       icon: <Truck className="w-6 h-6 text-farm dark:text-mango" />,
-      title: 'Farm Fresh Delivery',
-      description: 'Handpicked and direct transit to preserve moisture and freshness.',
+      titleKey: 'feat2Title',
+      descKey: 'feat2Desc',
     },
     {
       icon: <Sparkles className="w-6 h-6 text-farm dark:text-mango" />,
-      title: 'Premium Quality',
-      description: 'Strict grading criteria. Only the top-tier size and aroma make the cut.',
+      titleKey: 'feat3Title',
+      descKey: 'feat3Desc',
     },
     {
       icon: <Home className="w-6 h-6 text-farm dark:text-mango" />,
-      title: 'Direct From Farm',
-      description: 'Harvested in Talala Gir orchards and dispatched straight to your doorstep.',
+      titleKey: 'feat4Title',
+      descKey: 'feat4Desc',
     },
   ];
 
@@ -71,7 +74,7 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 className="text-xs font-sans tracking-[0.2em] font-extrabold text-farm dark:text-mango uppercase block"
               >
-                OUR HERITAGE
+                {t('aboutHeritage')}
               </motion.span>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -80,9 +83,9 @@ const About = () => {
                 transition={{ duration: 0.8 }}
                 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-farm-dark dark:text-white leading-tight"
               >
-                Welcome To <br />
+                {t('aboutWelcome')} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-farm via-mango to-mango-dark">
-                  Rajan Farm
+                  {t('aboutFarm')}
                 </span>
               </motion.h2>
             </div>
@@ -94,20 +97,9 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="space-y-6 text-farm-dark/80 dark:text-white/70 font-sans text-base sm:text-lg leading-relaxed font-normal"
             >
-              <p>
-                At Rajan Farm, we grow premium-quality{' '}
-                <strong className="text-farm dark:text-mango font-semibold">Gir Kesar Mangoes</strong>{' '}
-                using natural farming methods in the fertile lands of Talala, Gir. Our family has been
-                dedicated to agriculture, keeping traditional methods alive to yield authentic taste.
-              </p>
-              <p>
-                Our mangoes are carefully nurtured, naturally ripened, and harvested at the perfect stage
-                to deliver unmatched sweetness, rich saffron-coloured pulp, and a beautiful aroma.
-              </p>
-              <p>
-                Every single mango is handpicked directly from our farm and delivered fresh to clients,
-                bringing the authentic taste of Gujarat directly to your home.
-              </p>
+              <p>{t('aboutPara1')}</p>
+              <p>{t('aboutPara2')}</p>
+              <p>{t('aboutPara3')}</p>
             </motion.div>
 
             {/* Farm photo frame */}
@@ -125,8 +117,8 @@ const About = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-farm-deep/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
               <div className="absolute bottom-6 left-6 text-white z-10">
-                <p className="font-serif italic text-lg text-mango-light">Golden Sunshine of Talala</p>
-                <p className="text-xs uppercase tracking-widest opacity-80 mt-1">Our Orchard Vista</p>
+                <p className="font-serif italic text-lg text-mango-light">{t('aboutCaption')}</p>
+                <p className="text-xs uppercase tracking-widest opacity-80 mt-1">{t('aboutSub')}</p>
               </div>
             </motion.div>
           </div>
@@ -150,10 +142,10 @@ const About = () => {
                 </div>
                 <div className="space-y-2.5 mt-8">
                   <h3 className="text-lg font-serif font-bold text-farm-dark dark:text-white group-hover:text-mango transition-colors duration-300">
-                    {feature.title}
+                    {t(feature.titleKey)}
                   </h3>
                   <p className="text-sm font-sans text-farm-dark/70 dark:text-white/60 leading-relaxed">
-                    {feature.description}
+                    {t(feature.descKey)}
                   </p>
                 </div>
               </motion.div>

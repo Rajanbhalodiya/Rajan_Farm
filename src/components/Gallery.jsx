@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Maximize2, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import img1 from '../assets/mango_harvest_1.jpg';
 import img2 from '../assets/hero_orchard.jpg';
 import img3 from '../assets/mango_harvest_2.jpg';
 import img4 from '../assets/farm_view_1.jpg';
 
 const Gallery = () => {
+  const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState(null);
 
   const galleryItems = [
     {
       id: 1,
       src: img1,
-      title: 'Saffron Harvest Batch',
-      category: 'Harvest',
+      titleKey: 'galleryImg1',
+      categoryKey: 'galleryCat1',
       span: 'md:col-span-2 md:row-span-2',
     },
     {
       id: 2,
       src: img2,
-      title: 'Our Talala Orchard Canopy',
-      category: 'Orchard',
+      titleKey: 'galleryImg2',
+      categoryKey: 'galleryCat2',
       span: 'md:col-span-1 md:row-span-1',
     },
     {
       id: 3,
       src: img3,
-      title: 'Double Sorted Kesar Jewels',
-      category: 'Sorting',
+      titleKey: 'galleryImg3',
+      categoryKey: 'galleryCat3',
       span: 'md:col-span-1 md:row-span-2',
     },
     {
       id: 4,
       src: img4,
-      title: 'Sunshine Over Mango Groves',
-      category: 'Landscape',
+      titleKey: 'galleryImg4',
+      categoryKey: 'galleryCat4',
       span: 'md:col-span-2 md:row-span-1',
     },
   ];
@@ -49,10 +51,10 @@ const Gallery = () => {
         {/* Section Header */}
         <div className="text-center space-y-4 mb-20">
           <span className="text-xs font-sans tracking-[0.2em] font-extrabold text-farm dark:text-mango uppercase block">
-            VISUAL TOUR
+            {t('gallerySubtitle')}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-farm-dark dark:text-white">
-            Photo Gallery
+            {t('galleryTitle')}
           </h2>
           <div className="w-12 h-1 bg-mango mx-auto rounded-full" />
         </div>
@@ -72,7 +74,7 @@ const Gallery = () => {
               {/* Image */}
               <img
                 src={item.src}
-                alt={item.title}
+                alt={t(item.titleKey)}
                 className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
                 loading="lazy"
               />
@@ -91,9 +93,9 @@ const Gallery = () => {
               {/* Info Banner */}
               <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-farm-deep/80 via-farm-deep/40 to-transparent text-white z-20 transition-transform duration-300">
                 <span className="text-[9px] font-sans tracking-widest bg-mango text-farm-deep px-2 py-0.5 rounded uppercase font-bold">
-                  {item.category}
+                  {t(item.categoryKey)}
                 </span>
-                <h3 className="text-lg font-serif font-bold mt-2">{item.title}</h3>
+                <h3 className="text-lg font-serif font-bold mt-2">{t(item.titleKey)}</h3>
               </div>
             </motion.div>
           ))}
@@ -130,21 +132,21 @@ const Gallery = () => {
             >
               <img
                 src={selectedImage.src}
-                alt={selectedImage.title}
+                alt={t(selectedImage.titleKey)}
                 className="w-full h-full max-h-[75vh] object-contain"
               />
               <div className="w-full p-6 bg-farm-deep/60 backdrop-blur-md text-white border-t border-white/10 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-sans tracking-widest text-mango uppercase font-bold">
-                    {selectedImage.category}
+                    {t(selectedImage.categoryKey)}
                   </span>
-                  <h3 className="text-xl font-serif font-bold mt-1">{selectedImage.title}</h3>
+                  <h3 className="text-xl font-serif font-bold mt-1">{t(selectedImage.titleKey)}</h3>
                 </div>
                 <button
                   onClick={() => setSelectedImage(null)}
                   className="px-5 py-2.5 rounded-full bg-mango hover:bg-mango-dark text-farm-deep font-sans font-bold text-xs uppercase tracking-wider transition-colors duration-300"
                 >
-                  Close
+                  {t('closeBtn')}
                 </button>
               </div>
             </motion.div>

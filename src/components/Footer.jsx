@@ -1,7 +1,10 @@
 import React from 'react';
 import headIcon from '../assets/head.ico';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -68,9 +71,7 @@ const Footer = () => {
             </button>
 
             <p className="max-w-md text-sm font-sans text-white/60 leading-relaxed">
-              Cultivating the finest authentic Gir Kesar Mangoes since 2023 in the fertile lands of Talala Gir.
-              Grown naturally with organic care, handpicked with affection, and shipped fresh directly to
-              your family.
+              {t('footerDesc')}
             </p>
 
             {/* Social Icons */}
@@ -93,22 +94,22 @@ const Footer = () => {
           {/* Quick Links */}
           <div className="md:col-span-3 space-y-6">
             <h4 className="text-sm font-sans font-bold tracking-widest text-mango uppercase">
-              Quick Links
+              {t('footerQuick')}
             </h4>
             <ul className="space-y-3.5">
               {[
-                { id: 'home', label: 'Home' },
-                { id: 'about', label: 'About Us' },
-                { id: 'products', label: 'Our Mangoes' },
-                { id: 'journey', label: 'Farm Journey' },
-                { id: 'why-choose-us', label: 'Why Choose Us' },
+                { id: 'home', labelKey: 'navHome' },
+                { id: 'about', labelKey: 'navAbout' },
+                { id: 'products', labelKey: 'navProducts' },
+                { id: 'journey', labelKey: 'navJourney' },
+                { id: 'why-choose-us', labelKey: 'navWhyUs' },
               ].map((item) => (
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
                     className="text-sm font-sans text-white/60 hover:text-mango transition-colors duration-300"
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </button>
                 </li>
               ))}
@@ -118,20 +119,20 @@ const Footer = () => {
           {/* Explore Links */}
           <div className="md:col-span-3 space-y-6">
             <h4 className="text-sm font-sans font-bold tracking-widest text-mango uppercase">
-              Explore
+              {t('footerExplore')}
             </h4>
             <ul className="space-y-3.5">
               {[
-                { id: 'gallery', label: 'Gallery' },
-                { id: 'faq', label: 'FAQs' },
-                { id: 'contact', label: 'Place Order' },
+                { id: 'gallery', labelKey: 'navGallery' },
+                { id: 'faq', labelKey: 'faqTitle' },
+                { id: 'contact', labelKey: 'navOrderNow' },
               ].map((item) => (
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
                     className="text-sm font-sans text-white/60 hover:text-mango transition-colors duration-300"
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </button>
                 </li>
               ))}
@@ -141,13 +142,13 @@ const Footer = () => {
 
         {/* Copyright Panel */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-white/40 font-semibold tracking-wide">
-          <p>© 2026 Rajan Farm. All Rights Reserved.</p>
+          <p>{t('footerRights')}</p>
           <div className="flex gap-6">
             <a href="#home" className="hover:text-mango transition-colors duration-300">
-              Privacy Policy
+              {t('privacyPolicy')}
             </a>
             <a href="#home" className="hover:text-mango transition-colors duration-300">
-              Terms of Service
+              {t('termsOfService')}
             </a>
           </div>
         </div>

@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import headIcon from '../assets/head.ico';
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
-    { id: 'products', label: 'Our Mangoes' },
-    { id: 'journey', label: 'Farm Journey' },
-    { id: 'why-choose-us', label: 'Why Choose Us' },
-    { id: 'gallery', label: 'Gallery' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', key: 'navHome' },
+    { id: 'about', key: 'navAbout' },
+    { id: 'products', key: 'navProducts' },
+    { id: 'journey', key: 'navJourney' },
+    { id: 'why-choose-us', key: 'navWhyUs' },
+    { id: 'gallery', key: 'navGallery' },
+    { id: 'contact', key: 'navContact' },
   ];
 
   useEffect(() => {
@@ -95,7 +98,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                   : 'text-farm-dark/70 dark:text-white/70 hover:text-farm dark:hover:text-mango'
                   }`}
               >
-                {item.label}
+                {t(item.key)}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeIndicator"
@@ -109,6 +112,49 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
           {/* Right Action Area */}
           <div className="flex items-center gap-4">
+            {/* Language Selector Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setShowLangDropdown(!showLangDropdown)}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-farm/5 dark:bg-white/5 border border-farm-dark/5 dark:border-white/5 text-farm dark:text-mango font-sans font-bold text-xs tracking-wider uppercase transition-all duration-300 hover:bg-farm/10 dark:hover:bg-white/10"
+              >
+                <span className="text-[14px]">🌐</span>
+                {language === 'en' ? 'EN' : language === 'gu' ? 'ગુ' : 'HI'}
+              </button>
+              <AnimatePresence>
+                {showLangDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-2 w-32 rounded-2xl glass-nav shadow-luxury border border-farm-dark/5 dark:border-white/5 overflow-hidden z-50 flex flex-col p-1.5"
+                  >
+                    {[
+                      { code: 'en', label: 'English' },
+                      { code: 'gu', label: 'ગુજરાતી' },
+                      { code: 'hi', label: 'हिन्दी' },
+                    ].map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setShowLangDropdown(false);
+                        }}
+                        className={`text-left px-3 py-2 rounded-xl text-xs font-semibold font-sans tracking-wide transition-all ${
+                          language === lang.code
+                            ? 'bg-farm/10 dark:bg-mango/20 text-farm dark:text-mango'
+                            : 'text-farm-dark/70 dark:text-white/70 hover:bg-farm/5 dark:hover:bg-white/5'
+                        }`}
+                      >
+                        {lang.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Theme Toggle */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
@@ -123,7 +169,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               onClick={() => scrollToSection('contact')}
               className="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-farm hover:bg-farm-light dark:bg-mango dark:hover:bg-mango-dark text-white dark:text-farm-deep font-semibold text-xs tracking-wider uppercase shadow-md transition-all duration-300"
             >
-              Order Now
+              {t('navOrderNow')}
             </button>
 
             {/* Mobile Hamburguer */}
@@ -158,15 +204,42 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
                     : 'text-farm-dark/80 dark:text-white/80 hover:bg-farm/5 dark:hover:bg-white/5'
                     }`}
                 >
-                  {item.label}
+                  {t(item.key)}
                 </button>
               ))}
+
+              {/* Mobile Language Selector */}
+              <div className="flex items-center justify-between px-4 py-2.5 rounded-2xl bg-farm/5 dark:bg-white/5 border border-farm-dark/5 dark:border-white/5 mt-1">
+                <span className="text-xs font-bold text-farm-dark/60 dark:text-white/50 tracking-wider uppercase flex items-center gap-1.5">
+                  <span className="text-[14px]">🌐</span> Language
+                </span>
+                <div className="flex gap-1.5">
+                  {[
+                    { code: 'en', label: 'English' },
+                    { code: 'gu', label: 'ગુજરાતી' },
+                    { code: 'hi', label: 'हिन्दी' },
+                  ].map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => setLanguage(lang.code)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                        language === lang.code
+                          ? 'bg-farm dark:bg-mango text-white dark:text-farm-deep shadow-sm'
+                          : 'text-farm-dark/70 dark:text-white/70 hover:bg-farm/10 dark:hover:bg-white/10'
+                      }`}
+                    >
+                      {lang.code === 'en' ? 'EN' : lang.code === 'gu' ? 'ગુ' : 'HI'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <hr className="border-farm-dark/10 dark:border-white/10 my-2" />
               <button
                 onClick={() => scrollToSection('contact')}
                 className="w-full text-center py-3 rounded-full bg-farm dark:bg-mango text-white dark:text-farm-deep font-semibold text-sm tracking-wider uppercase shadow-md"
               >
-                Order Now
+                {t('navOrderNow')}
               </button>
             </div>
           </motion.div>

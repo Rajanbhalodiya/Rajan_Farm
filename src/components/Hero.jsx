@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import FloatingMangoes from './FloatingMangoes';
 import heroOrchard from '../assets/hero_orchard.jpg';
 
 const Hero = () => {
+  const { t } = useLanguage();
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
 
@@ -67,20 +69,20 @@ const Hero = () => {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border-mango/30 bg-white/10 text-mango font-sans text-xs font-semibold uppercase tracking-widest mb-6 shadow-glow-gold/10"
           >
             <span className="w-2 h-2 rounded-full bg-mango animate-pulse-slow" />
-            Talala Gir • 100% Organic
+            {t('heroTagline')}
           </motion.div>
 
           {/* Heading */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-black text-white leading-[1.1] tracking-tight mb-6">
-            Premium Gir <br className="hidden sm:inline" />
+            {t('heroHeading1')} <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-mango via-mango-light to-mango-dark text-glow-gold">
-              Kesar Mangoes
+              {t('heroHeading2')}
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="max-w-2xl text-base sm:text-lg md:text-xl font-sans text-white/95 dark:text-white/80 font-medium tracking-wide mb-10 leading-relaxed">
-            Naturally Ripened <span className="text-mango">•</span> Farm Fresh <span className="text-mango">•</span> Direct From Talala Gir
+            {t('heroSubheading')}
           </p>
 
           {/* CTA Buttons */}
@@ -89,13 +91,13 @@ const Hero = () => {
               onClick={() => scrollToSection('contact')}
               className="btn-mango w-full sm:w-auto text-sm px-9 py-4 tracking-wider uppercase text-farm-deep hover:scale-105 active:scale-95 duration-300 shadow-glow-gold flex items-center justify-center gap-2"
             >
-              Order Now <ArrowRight size={16} />
+              {t('heroOrderBtn')} <ArrowRight size={16} />
             </button>
             <button
               onClick={() => scrollToSection('about')}
               className="btn-secondary bg-white/5 border-white/20 hover:border-white text-white hover:bg-white hover:text-farm-deep w-full sm:w-auto text-sm px-9 py-4 tracking-wider uppercase backdrop-blur-sm hover:scale-105 active:scale-95 duration-300 flex items-center justify-center gap-2"
             >
-              Explore Farm
+              {t('heroExploreBtn')}
             </button>
           </div>
         </motion.div>
@@ -115,7 +117,7 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-20 flex flex-col items-center gap-1.5 opacity-75 hover:opacity-100 transition-opacity duration-300"
       >
         <span className="text-[10px] font-sans tracking-widest text-farm dark:text-mango-light font-bold uppercase">
-          Scroll Down
+          {t('heroScrollDown')}
         </span>
         <div className="w-8 h-8 rounded-full border border-farm/30 dark:border-mango/30 flex items-center justify-center text-farm dark:text-mango-light">
           <ChevronDown size={14} />

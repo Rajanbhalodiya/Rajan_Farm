@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const Counter = ({ target, suffix = '', duration = 1.5 }) => {
   const [count, setCount] = useState(0);
@@ -36,11 +37,13 @@ const Counter = ({ target, suffix = '', duration = 1.5 }) => {
 };
 
 const Stats = () => {
+  const { t } = useLanguage();
+
   const statList = [
-    { target: 3, suffix: '+', label: 'Years Experience' },
-    { target: 500, suffix: '+', label: 'Happy Customers' },
-    { target: 100, suffix: '%', label: 'Natural Farming' },
-    { target: 1000, suffix: '+', label: 'Boxes Delivered' },
+    { target: 3, suffix: '+', labelKey: 'statExp' },
+    { target: 500, suffix: '+', labelKey: 'statHappy' },
+    { target: 100, suffix: '%', labelKey: 'statNatural' },
+    { target: 1000, suffix: '+', labelKey: 'statDelivered' },
   ];
 
   return (
@@ -69,7 +72,7 @@ const Stats = () => {
 
               {/* Label */}
               <p className="text-xs sm:text-sm md:text-base font-sans font-bold tracking-widest text-white/80 uppercase">
-                {stat.label}
+                {t(stat.labelKey)}
               </p>
             </motion.div>
           ))}
