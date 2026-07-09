@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-mango-light: #FFE29A;
+  --color-mango: #FFB703;
+  --color-mango-dark: #F4A300;
+  --color-mango-deep: #E08A00;
+
+  --color-farm-light: #40916C;
+  --color-farm: #2D6A4F;
+  --color-farm-dark: #1B4332;
+  --color-farm-deep: #081C15;
+
+  --color-bgWarm-light: #FFF8E7;
+  --color-bgWarm-dark: #0F291E;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Outfit", "Inter", sans-serif;
+
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-float-medium: float 6s ease-in-out infinite;
+  --animate-float-fast: float 4s ease-in-out infinite;
+  --animate-sway-slow: sway 8s ease-in-out infinite;
+  --animate-sway-medium: sway 5s ease-in-out infinite;
+  --animate-shine: shine 1.5s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(4deg); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(6deg); }
+  }
+  @keyframes shine {
+    100% { left: 125%; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply antialiased transition-colors duration-500 font-sans;
+  }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bgWarm-light dark:bg-bgWarm-dark transition-colors duration-500;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-farm/40 hover:bg-farm/70 rounded-full transition-all duration-300;
+  }
+}
+
+@layer components {
+  /* Luxury Glassmorphism Utilities */
+  .glass-nav {
+    @apply backdrop-blur-md border-b bg-white/60 dark:bg-bgWarm-dark/60 border-black/5 dark:border-white/5;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-lg border transition-all duration-500;
+    @apply bg-white/70 dark:bg-bgWarm-dark/40;
+    @apply border-farm-dark/5 dark:border-white/5;
+    @apply shadow-[0_8px_32px_0_rgba(27,67,50,0.03)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+  }
+
+  .glass-card:hover {
+    @apply border-mango/30 dark:border-mango/20;
+    @apply shadow-[0_12px_40px_0_rgba(255,183,3,0.12)] dark:shadow-[0_12px_40px_0_rgba(255,183,3,0.08)];
+  }
+
+  .glass-input {
+    @apply bg-white/40 dark:bg-white/5 border border-farm-dark/10 dark:border-white/10 rounded-xl px-4 py-3 outline-none focus:border-mango transition-all duration-300 text-farm-dark dark:text-white placeholder-farm-dark/40 dark:placeholder-white/30;
+  }
+
+  /* Gold Luxury Text Glow */
+  .text-glow-gold {
+    text-shadow: 0 0 12px rgba(255, 183, 3, 0.4);
+  }
+
+  /* Farm Green Text Glow */
+  .text-glow-green {
+    text-shadow: 0 0 12px rgba(45, 106, 79, 0.4);
+  }
+
+  /* Premium Buttons */
+  .btn-primary {
+    @apply relative overflow-hidden px-8 py-3 rounded-full font-semibold text-white bg-farm hover:bg-farm-light transition-all duration-500 shadow-md;
+    box-shadow: 0 0 20px rgba(45, 106, 79, 0.15);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 25px rgba(45, 106, 79, 0.35);
+  }
+
+  .btn-secondary {
+    @apply px-8 py-3 rounded-full font-semibold border-2 border-farm text-farm dark:text-mango-light dark:border-mango/40 hover:bg-farm hover:text-white dark:hover:bg-mango dark:hover:text-farm-deep transition-all duration-500;
+  }
+
+  .btn-mango {
+    @apply relative overflow-hidden px-8 py-3 rounded-full font-semibold text-farm-dark bg-mango hover:bg-mango-dark transition-all duration-500 shadow-md;
+    box-shadow: 0 0 20px rgba(255, 183, 3, 0.15);
+  }
+  .btn-mango:hover {
+    box-shadow: 0 0 25px rgba(255, 183, 3, 0.35);
+  }
+
+  /* Shine Hover Effect */
+  .shine-hover {
+    @apply relative overflow-hidden;
+  }
+  .shine-hover::after {
+    content: '';
+    @apply absolute top-0 -left-[75%] w-1/2 h-full block z-10;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+    transform: skewX(-25deg);
+  }
+  .shine-hover:hover::after {
+    animation: shine 0.75s;
+  }
+}
+
+/* Custom Text Reveal Animations */
+.reveal-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #1b4332, #ffb703, #2d6a4f);
+  background-size: 200% auto;
+  animation: shine-text 4s linear infinite;
+}
+
+@keyframes shine-text {
+  to {
+    background-position: 200% center;
+  }
+}
